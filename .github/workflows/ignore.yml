@@ -1,0 +1,17 @@
+name: Ignore /easycla Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  ignore-easycla:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body != '/easycla' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log Comment Body
+        run: echo "Comment Body: ${{ github.event.comment.body }}"
+
